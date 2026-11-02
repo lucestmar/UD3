@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\Lucie\Documents\accesso_Datos\AD_T3\datos\plantas.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="videojuegos.sqlite" uuid="e4540622-4f79-41ca-8fd1-13e858d716db">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Lucie\Documents\GitHub\UD3\AD_T3\datos\videojuegos.sqlite</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
