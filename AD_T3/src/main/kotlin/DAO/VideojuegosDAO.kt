@@ -66,7 +66,7 @@ object VideojuegosDAO {
             println("Error: No se puede actualizar una videojuego sin ID.")
             return
         }
-        val sql = "UPDATE videojuego SET titulo = ?, genero = ?, anio = ?, nota = ? WHERE id = ?"
+        val sql = "UPDATE videojuegos SET titulo = ?, genero = ?, anio = ?, nota = ? WHERE id = ?"
         ConexionBD.getConnection()?.use { conn ->
             conn.prepareStatement(sql).use { stmt ->
                 stmt.setString(1, videojuego.titulo)
@@ -84,7 +84,7 @@ object VideojuegosDAO {
     }
 
     fun eliminarVideojuego(id: Int) {
-        val sql = "DELETE FROM videojuego WHERE id = ?"
+        val sql = "DELETE FROM videojuegos WHERE id = ?"
         ConexionBD.getConnection()?.use { conn ->
             conn.prepareStatement(sql).use { stmt ->
                 stmt.setInt(1, id)

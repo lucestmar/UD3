@@ -1,12 +1,13 @@
 package app
 
+import DAO.ListasDAO
 import DAO.VideojuegosDAO
 import model.Videojuego
 
 fun main() {
 
     // Listar todas los videojuegos
-    println("Lista de plantas:")
+    println("Lista de videojuegos:")
     VideojuegosDAO.listarVideojuegos().forEach {
         println(" - [${it.id}] ${it.titulo} (${it.genero}), año: ${it.anio} , nota: ${it.nota}")
     }
@@ -41,5 +42,10 @@ fun main() {
     )
 
     // Eliminar videojuego con id=2 (Red Dead Redemption 2)
+    println("Eliminar videojuego:")
     VideojuegosDAO.eliminarVideojuego(2)
+
+    //Añadir videojuego a la lista con id=1
+    println("Añadir videojuego a las listas:")
+    ListasDAO.anyadirALista(1, 1, "2022")
 }
