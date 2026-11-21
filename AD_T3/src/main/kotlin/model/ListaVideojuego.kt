@@ -1,4 +1,6 @@
 package model
 
-data class ListaVideojuego(val id: Int, val idVideojuego: Int, val fecha: String,) {
+import java.sql.Date
+
+data class ListaVideojuego(val id: Int, val idVideojuego: Int, val fecha: Date) {
 }

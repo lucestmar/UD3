@@ -2,10 +2,12 @@ package DAO
 
 import database.ConexionBD
 import java.sql.Connection
+import java.sql.Date
 import java.sql.SQLException
+import java.time.LocalDate
 
 object ListasDAO {
-    fun anyadirALista(id_lista: Int, id_videojuego: Int, fecha_añadido: String) {
+    fun anyadirALista(id_lista: Int, id_videojuego: Int) {
         var conn: Connection? = null
         try {
             conn = ConexionBD.getConnection()
@@ -32,7 +34,7 @@ object ListasDAO {
                 .use { stmt ->
                     stmt?.setInt(1, id_lista)
                     stmt?.setInt(2, id_videojuego)
-                    stmt?.setString(3, fecha_añadido)
+                    stmt?.setDate(3, Date.valueOf(LocalDate.now()))
                     stmt?.executeUpdate()
                 }
 
@@ -40,12 +42,12 @@ object ListasDAO {
             conn?.commit()
             println("Transacción realizada con éxito.")
         } catch (e: SQLException) {
-            if (e.message?.contains("UNIQUE constraint failed") == true) {
-                println("Intento de insertar clave duplicada")
-                conn?.rollback()
-                println("Transacción revertida.")
+            conn?.rollback()
+            if (e.sqlState == "23505") {
+                println("Intento de insertar clave duplicada. Transacción revertida.")
             } else {
-                throw e // otros errores, relanzamos
+                println("Error SQL (${e.sqlState}): ${e.message}")
+                throw e
             }
         } finally {
             // Código que se ejecuta siempre

@@ -5,13 +5,17 @@ import java.sql.DriverManager
 import java.sql.SQLException
 
 object ConexionBD {
-    private val dbPath = "datos/videojuegos.sqlite"
-    private val dbFile = File(dbPath)
-    private val url = "jdbc:sqlite:${dbFile.absolutePath}"
+    private const val HOST = "localhost"
+    private const val PORT = 5432
+    private const val DATABASE = "videojuegos"
+    private const val USER = "postgres"
+    private const val PASSWORD = "qwerty2"
+
+    private val url = "jdbc:postgresql://$HOST:$PORT/$DATABASE"
 
     fun getConnection(): Connection? {
         return try {
-            DriverManager.getConnection(url)
+            DriverManager.getConnection(url, USER, PASSWORD)
         } catch (e: SQLException) {
             println("Error al conectar con la base de datos: ${e.message}")
             null
@@ -20,7 +24,7 @@ object ConexionBD {
 
     fun testConnection(): Boolean {
         return getConnection()?.use { conn ->
-            println("Conexión establecida con éxito a ${dbFile.absolutePath}")
+            println("Conexión establecida con éxito a la base de datos '$DATABASE'")
             true
         } ?: false
     }

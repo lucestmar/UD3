@@ -3,6 +3,7 @@ package app
 import DAO.ListasDAO
 import DAO.VideojuegosDAO
 import model.Videojuego
+import java.time.LocalDate
 
 fun main() {
 
@@ -47,5 +48,5 @@ fun main() {
 
     //Añadir videojuego a la lista con id=1
     println("Añadir videojuego a las listas:")
-    ListasDAO.anyadirALista(1, 1, "2022")
+    ListasDAO.anyadirALista(1, 1 )
 }
